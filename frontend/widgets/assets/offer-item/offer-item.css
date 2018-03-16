@@ -1,0 +1,7 @@
+.offer-buttons {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.offer-buttons .offer-cart {
+	float: right;
+}

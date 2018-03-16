@@ -1,6 +1,6 @@
 {
     "name": "simple-yii2/order",
-    "description": "Cart and order for catalog module for Yii 2 framework",
+    "description": "Cart and order module for Yii 2 framework",
     "type": "yii2-module",
     "keywords": ["yii2","module","order", "cart"],
     "license": "BSD-3-Clause",
@@ -11,11 +11,13 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "simple-yii2/catalog": "*"
     },
     "autoload": {
         "psr-4": {
-            "cms\\catalog\\": ""
+            "cms\\order\\": "",
+            "cms\\catalog\\": "catalog"
         }
     }
 }
