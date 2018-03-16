@@ -16,8 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cms\\order\\": "",
-            "cms\\catalog\\": "catalog"
+            "cms\\order\\": ""
         }
     }
 }

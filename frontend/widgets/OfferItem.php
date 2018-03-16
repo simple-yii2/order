@@ -17,7 +17,7 @@ class OfferItem extends \cms\catalog\frontend\widgets\OfferItem
 
 		$this->buttons[] = function ($model) {
 			$title = Yii::t('catalog', 'Buy');
-			return Html::a('<span class="glyphicon glyphicon-shopping-cart"></span> ' . $title, ['cart/add', 'id' => $model->id], ['class' => 'btn btn-primary offer-cart']);
+			return Html::a('<span class="glyphicon glyphicon-shopping-cart"></span> ' . $title, ['/order/cart/add', 'id' => $model->id], ['class' => 'btn btn-primary offer-cart']);
 		};
 	}
 
