@@ -1,8 +1,8 @@
 {
-    "name": "simple-yii2/order",
-    "description": "Cart and order module for Yii 2 framework",
+    "name": "simple-yii2/purchase",
+    "description": "Purchase module for Yii 2 framework",
     "type": "yii2-module",
-    "keywords": ["yii2","module","order", "cart"],
+    "keywords": ["yii2", "module", "purchase", "order", "cart"],
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cms\\order\\": ""
+            "cms\\purchase\\": ""
         }
     }
 }
