@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\frontend\widgets\assets;
+namespace cms\purchase\frontend\widgets\assets;
 
 use yii\web\AssetBundle;
 
@@ -9,6 +9,10 @@ class OfferItemAsset extends AssetBundle
 
 	public $css = [
 		'offer-item.css',
+	];
+
+	public $js = [
+		'offer-item.js',
 	];
 
 	public function init()

@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\frontend;
+namespace cms\purchase\frontend;
 
 use cms\components\FrontendModule;
 
@@ -15,7 +15,7 @@ class Module extends FrontendModule
 	 */
 	public static function moduleName()
 	{
-		return 'order';
+		return 'purchase';
 	}
 
 }

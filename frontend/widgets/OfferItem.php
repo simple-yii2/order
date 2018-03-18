@@ -1,10 +1,10 @@
 <?php
 
-namespace cms\order\frontend\widgets;
+namespace cms\purchase\frontend\widgets;
 
 use Yii;
 use yii\helpers\Html;
-use cms\order\frontend\widgets\assets\OfferItemAsset;
+use cms\purchase\frontend\widgets\assets\OfferItemAsset;
 
 class OfferItem extends \cms\catalog\frontend\widgets\OfferItem
 {
@@ -17,7 +17,7 @@ class OfferItem extends \cms\catalog\frontend\widgets\OfferItem
 
 		$this->buttons[] = function ($model) {
 			$title = Yii::t('catalog', 'Buy');
-			return Html::a('<span class="glyphicon glyphicon-shopping-cart"></span> ' . $title, ['/order/cart/add', 'id' => $model->id], ['class' => 'btn btn-primary offer-cart']);
+			return Html::a('<span class="glyphicon glyphicon-shopping-cart"></span> ' . $title, ['/purchase/cart/add', 'id' => $model->id], ['class' => 'btn btn-primary offer-cart']);
 		};
 	}
 

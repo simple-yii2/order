@@ -1,4 +1,4 @@
-create table if not exists `order`
+create table if not exists `purchase_order`
 (
     `id` int(10) not null auto_increment,
     `user_id` int(10) default null,
@@ -9,7 +9,7 @@ create table if not exists `order`
     primary key (`id`)
 ) engine InnoDB;
 
-create table if not exists `order_offer`
+create table if not exists `purchase_order_offer`
 (
     `order_id` int(10) not null,
     `offer_id` int(10) not null,

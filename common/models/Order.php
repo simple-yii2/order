@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\common\models;
+namespace cms\purchase\common\models;
 
 use yii\db\ActiveRecord;
 
@@ -12,7 +12,7 @@ class Order extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'order';
+        return 'purchase_order';
     }
 
 }

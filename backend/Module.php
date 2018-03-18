@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\backend;
+namespace cms\purchase\backend;
 
 use Yii;
 use cms\components\BackendModule;
@@ -13,7 +13,7 @@ class Module extends BackendModule
      */
     public static function moduleName()
     {
-        return 'order';
+        return 'purchase';
     }
 
     /**
@@ -21,15 +21,15 @@ class Module extends BackendModule
      */
     public function cmsMenu($base)
     {
-        if (!Yii::$app->getUser()->can('Order')) {
+        if (!Yii::$app->getUser()->can('Purchase')) {
             return [];
         }
 
         $items = [];
-        $items[] = ['label' => Yii::t('order', 'Orders'), 'url' => ["$base/order/order/index"]];
+        $items[] = ['label' => Yii::t('purchase', 'Orders'), 'url' => ["$base/purchase/order/index"]];
 
         return [
-            ['label' => Yii::t('order', 'Orders'), 'items' => $items],
+            ['label' => Yii::t('purchase', 'Purchases'), 'items' => $items],
         ];
     }
 

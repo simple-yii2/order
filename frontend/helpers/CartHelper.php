@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\frontend\helpers;
+namespace cms\purchase\frontend\helpers;
 
 class CartHelper
 {

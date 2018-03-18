@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\order\frontend\controllers;
+namespace cms\purchase\frontend\controllers;
 
 use yii\web\Controller;
 
