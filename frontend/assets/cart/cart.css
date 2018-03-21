@@ -1,0 +1,145 @@
+#cart-list {
+    margin-bottom: 15px;
+}
+#cart-list > div {
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    padding: 10px 0;
+}
+#cart-list > div:first-child {
+    border-top: 1px solid #ccc;
+}
+
+
+
+/* Buttons */
+.cart-item-buttons {
+    float: right;
+}
+.cart-item-buttons > .btn {
+    height: 36px;
+    padding: 6px;
+    width: 36px;
+}
+.cart-item-buttons > .btn > .glyphicon {
+    color: #666;
+    vertical-align: middle;
+}
+
+
+/* Title */
+.cart-item-title {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* Thumb */
+.cart-item-thumb {
+    float: left;
+    margin-right: 15px;
+    width: 100px;
+}
+.cart-item-thumb > img {
+    width: 100%;
+}
+
+
+/* Count */
+.cart-item-count {
+    margin-bottom: 10px;
+    width: 120px;
+}
+.cart-item-count .btn {
+    height: 36px;
+    padding: 6px;
+    vertical-align: middle;
+    width: 36px;
+}
+.cart-item-count .btn > .glyphicon {
+    color: #666;
+    font-size: 12px;
+}
+.cart-item-count input {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+
+/* Total amount */
+.cart-item-total-amount {
+    color: #ddd;
+    font-size: 24px;
+    line-height: 36px;
+}
+.cart-item-total-amount > span {
+    color: #333;
+    font-weight: bold;
+}
+
+
+
+/* Total */
+.cart-list-total {
+    overflow: hidden;
+}
+.cart-list-total-amount-block {
+    margin-bottom: 15px;
+}
+.cart-list-total-amount {
+    color: #ddd;
+    font-size: 30px;
+}
+.cart-list-total-amount > span {
+    color: #333;
+    font-weight: bold;
+}
+.cart-list-total-buttons > .btn {
+    display: block;
+}
+
+
+
+@media (min-width: 768px) {
+    .cart-item-title {
+        float: left;
+        margin-left: 115px;
+        margin-right: -365px;
+        width: 250px;
+    }
+    .cart-item-count {
+        float: left;
+        margin-left: 265px;
+        margin-right: 15px;
+    }
+    .cart-list-total-amount-block {
+        float: right;
+    }
+    .cart-list-total-buttons {
+        margin-top: 25px;
+    }
+    .cart-list-total-buttons > .btn {
+        display: inline-block;
+    }
+}
+@media (min-width: 992px) {
+    .cart-item-title {
+        margin-right: -565px;
+        width: 450px;
+    }
+    .cart-item-count {
+        margin-left: 465px;
+    }
+}
+@media (min-width: 1200px) {
+    .cart-item-title {
+        margin-right: -765px;
+        width: 650px;
+    }
+    .cart-item-count {
+        margin-left: 665px;
+    }
+}

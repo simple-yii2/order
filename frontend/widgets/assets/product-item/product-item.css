@@ -1,0 +1,8 @@
+.product-buttons {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.product-buttons .product-cart,
+.product-buttons .product-cart-add {
+	float: right;
+}
