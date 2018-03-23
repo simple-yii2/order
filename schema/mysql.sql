@@ -24,5 +24,6 @@ create table if not exists `purchase_order_product`
     `amount` decimal(10,2) not null,
     `discountAmount` decimal(10,2) not null,
     `totalAmount` decimal(10,2) not null,
-    primary key (`order_id`, `product_id`)
+    primary key (`order_id`, `product_id`),
+    foreign key (`order_id`) references `purchase_order` (`id`) on delete cascade on update cascade,
 ) engine InnoDB;
