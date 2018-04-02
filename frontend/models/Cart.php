@@ -36,18 +36,20 @@ class Cart extends Order
 	 */
 	public function calc()
 	{
-		$count = $amount = $discountAmount = $totalAmount = 0;
+		$count = $amount = $discountAmount = $subtotalAmount = 0;
 		foreach ($this->products as $item) {
 			$count += $item->count;
 			$amount += $item->amount;
 			$discountAmount += $item->discountAmount;
-			$totalAmount += $item->totalAmount;
+			$subtotalAmount += $item->totalAmount;
 		}
 
 		$this->count = $count;
 		$this->amount = $amount;
 		$this->discountAmount = $discountAmount;
-		$this->totalAmount = $totalAmount;
+		$this->subtotalAmount = $subtotalAmount;
+
+		$this->totalAmount = $subtotalAmount + $this->deliveryAmount;
 
 		// $row = $this->getProducts()->select([
 		// 	'SUM([[count]]) as [[count]]',

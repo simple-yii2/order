@@ -4,9 +4,9 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use cms\catalog\frontend\helpers\PriceHelper;
-use cms\purchase\frontend\assets\CartAsset;
+use cms\purchase\frontend\assets\CartFormAsset;
 
-CartAsset::register($this);
+CartFormAsset::register($this);
 
 $title = Yii::t('purchase', 'Shopping cart');
 $this->title = $title;
@@ -25,7 +25,7 @@ $currency = $cart === null ? null : $cart->currency;
 $total = '';
 if ($cart !== null) {
     $label = Html::tag('span', Html::encode(Yii::t('purchase', 'Total') . ':'));
-    $amount = Html::tag('div', PriceHelper::render('span', $cart->totalAmount, $currency), ['class' => 'cart-list-total-amount']);
+    $amount = Html::tag('div', PriceHelper::render('span', $cart->subtotalAmount, $currency), ['class' => 'cart-list-total-amount']);
     $block = Html::tag('div', $label . $amount, ['class' => 'cart-list-total-amount-block']);
 
     $order = Html::a(Yii::t('purchase', 'Proceed to checkout'), ['order/delivery'], ['class' => 'btn btn-primary']);

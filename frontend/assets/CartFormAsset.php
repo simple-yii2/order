@@ -4,15 +4,15 @@ namespace cms\purchase\frontend\assets;
 
 use yii\web\AssetBundle;
 
-class CartAsset extends AssetBundle
+class CartFormAsset extends AssetBundle
 {
 
     public $css = [
-        'cart.css',
+        'cart-form.css',
     ];
 
     public $js = [
-        'cart.js',
+        'cart-form.js',
     ];
 
     public $depends = [
@@ -22,7 +22,7 @@ class CartAsset extends AssetBundle
 
     public function init()
     {
-        $this->sourcePath = __DIR__ . '/cart';
+        $this->sourcePath = __DIR__ . '/cart-form';
         parent::init();
     }
 

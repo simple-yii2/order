@@ -1,0 +1,36 @@
+.order-total-buttons,
+.order-total-info,
+.order-total-amount-block {
+    margin-bottom: 20px;
+}
+
+
+.order-subtotal-amount,
+.order-delivery-amount,
+.order-total-amount {
+    color: #ddd;
+}
+.order-subtotal-amount > span,
+.order-delivery-amount > span,
+.order-total-amount > span {
+    color: #333;
+    font-weight: bold;
+}
+
+
+.order-total-amount {
+    font-size: 30px;
+}
+
+
+@media (min-width: 768px) {
+    .order-total-info {
+        float: left;
+    }
+    .order-total-amount-block {
+        float: right;
+    }
+    .order-total-info-wrapper {
+        overflow: hidden;
+    }
+}

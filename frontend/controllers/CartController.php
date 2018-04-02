@@ -115,6 +115,7 @@ class CartController extends Controller
 			'count' => $cart->count,
 			'amount' => PriceHelper::render('span', $cart->amount),
 			'discountAmount' => PriceHelper::render('span', $cart->discountAmount),
+			'subtotalAmount' => PriceHelper::render('span', $cart->subtotalAmount),
 			'totalAmount' => PriceHelper::render('span', $cart->totalAmount),
 			'product_id' => $product->id,
 			'items' => $items,

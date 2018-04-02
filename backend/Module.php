@@ -9,6 +9,11 @@ class Module extends BackendModule
 {
 
     /**
+     * @var array delivery methods available. Every item is the class name or config.
+     */
+    public $delivery;
+
+    /**
      * @inheritdoc
      */
     public static function moduleName()
@@ -26,7 +31,7 @@ class Module extends BackendModule
         }
 
         $items = [];
-        $items[] = ['label' => Yii::t('purchase', 'Orders'), 'url' => ["$base/purchase/order/index"]];
+        $items[] = ['label' => Yii::t('purchase', 'Delivery methods'), 'url' => ["$base/purchase/delivery/index"]];
 
         return [
             ['label' => Yii::t('purchase', 'Purchases'), 'items' => $items],

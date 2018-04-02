@@ -38,4 +38,13 @@ class Order extends ActiveRecord
         return $this->hasMany(OrderProduct::className(), ['order_id' => 'id']);
     }
 
+    /**
+     * Order delivery relation
+     * @return yii\db\ActiveQueryInterface
+     */
+    public function getDelivery()
+    {
+        return $this->hasOne(OrderDelivery::className(), ['order_id' => 'id'])->inverseOf('order');
+    }
+
 }

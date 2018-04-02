@@ -69,5 +69,5 @@ $(document).on('cart.count', function(e, cart) {
 });
 
 $(document).on('cart.remove cart.count', function(e, cart) {
-    $('.cart-list-total-amount').html(cart.totalAmount);
+    $('.cart-list-total-amount').html(cart.subtotalAmount);
 });
