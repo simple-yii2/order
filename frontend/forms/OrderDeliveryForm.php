@@ -9,13 +9,8 @@ use cms\purchase\common\helpers\DeliveryHelper;
 use cms\purchase\common\models\Order;
 use cms\purchase\common\models\OrderDelivery;
 
-class DeliveryForm extends Model
+class OrderDeliveryForm extends Model
 {
-
-    /**
-     * @var string
-     */
-    public $method;
 
     /**
      * @var integer
@@ -78,6 +73,11 @@ class DeliveryForm extends Model
     public $comment;
 
     /**
+     * @var string
+     */
+    private $_method;
+
+    /**
      * @var OrderDelivery
      */
     private $_object;
@@ -87,11 +87,19 @@ class DeliveryForm extends Model
      */
     public function __construct(OrderDelivery $object = null, $config = [])
     {
-        if ($object === null) {
-            $object = new OrderDelivery;
-        }
+        //delivery methods
+        $methods = DeliveryHelper::getDeliveryMethods();
 
+        //object
+        if ($object === null) {
+            $method = ArrayHelper::getValue(array_values($methods), 0);
+            $object = $method === null ? new OrderDelivery : clone $method;
+        }
         $this->_object = $object;
+        
+        //method
+        $methodKeys = array_flip(array_map(function ($v) {return get_class($v);}, DeliveryHelper::getDeliveryMethods()));
+        $this->method = ArrayHelper::getValue($methodKeys, get_class($object));
 
         parent::__construct(array_replace([
             'store_id' => $object->store_id,
@@ -148,7 +156,7 @@ class DeliveryForm extends Model
         $required = [];
         foreach (DeliveryHelper::getDeliveryMethods() as $deliveryKey => $delivery) {
             foreach ($delivery->rules() as $rule) {
-                $rule['on'] = $deliveryKey;
+                $rule['on'] = 'delivery_' . $deliveryKey;
                 $rules[] = $rule;
 
                 if ($rule[1] == 'required') {
@@ -162,6 +170,62 @@ class DeliveryForm extends Model
     }
 
     /**
+     * Object getter
+     * @return OrderDelivery
+     */
+    public function getObject()
+    {
+        return $this->_object;
+    }
+
+    /**
+     * Method getter
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->_method;
+    }
+
+    /**
+     * Method setter
+     * @param string $value 
+     * @return void
+     */
+    public function setMethod($value)
+    {
+        $this->_method = $value;
+
+        $method = ArrayHelper::getValue(DeliveryHelper::getDeliveryMethods(), $value);
+        if ($method === null) {
+            return;
+        }
+
+        if (get_class($this->_object) == get_class($method)) {
+            return;
+        }
+
+        //get attributes
+        $preventAttributeNames = ['class', 'name', '_fields'];
+        $attributes = array_diff_key($this->_object->getAttributes(), array_flip($preventAttributeNames));
+        $this->_object->street = 'test';
+        $dirtyAttributeNames = array_merge($preventAttributeNames, array_keys($this->_object->getDirtyAttributes()));
+
+        //object
+        $this->_object = clone $method;
+        $object = $this->_object;
+        $object->setAttributes($attributes, false);
+        if ($attributes['id']) {
+            $this->_object->setIsNewRecord(false);
+        }
+
+        //set attributes
+        foreach ($dirtyAttributeNames as $name) {
+            $object->markAttributeDirty($name);
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function beforeValidate()
@@ -170,7 +234,7 @@ class DeliveryForm extends Model
             return false;
         }
 
-        $this->scenario = $this->method;
+        $this->scenario = 'delivery_' . $this->method;
 
         return true;
     }
@@ -189,7 +253,6 @@ class DeliveryForm extends Model
      */
     public function calc(Order $order)
     {
-        $this->checkObject();
         $this->applyObject();
 
         $object = $this->_object;
@@ -211,7 +274,6 @@ class DeliveryForm extends Model
             return false;
         }
 
-        $this->checkObject();
         $this->applyObject();
 
         $object = $this->_object;
@@ -219,37 +281,9 @@ class DeliveryForm extends Model
         $object->calcAmount();
         $object->calcDays();
 
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
-            $order->link('delivery', $object);
-            $order->deliveryAmount = $object->amount;
-            $order->calc();
-            $order->save();
-            $transaction->commit();
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        }
+        $order->link('delivery', $object);
 
         return true;
-    }
-
-    /**
-     * Check object class and change it if needed
-     * @return void
-     */
-    private function checkObject()
-    {
-        $method = ArrayHelper::getValue(DeliveryHelper::getDeliveryMethods(), $this->method);
-        if ($method === null) {
-            return;
-        }
-
-        if (get_class($this->_object) == get_class($method)) {
-            return;
-        }
-
-        $this->_object = clone $method;
     }
 
     /**

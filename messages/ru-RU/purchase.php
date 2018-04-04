@@ -25,6 +25,9 @@ return [
     'Back to cart' => 'Вернуться в корзину',
     'Next' => 'Далее',
     //forms
+    'Contact information' => 'Контактная информация',
+    'Name' => 'Имя',
+    'E-mail' => 'E-mail',
     'Delivery method' => 'Способ доставки',
     'Pickup point' => 'Пункт выдачи заказов',
     'Delivery service name' => 'Наименование транспортной компании',

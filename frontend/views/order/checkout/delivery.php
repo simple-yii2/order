@@ -1,19 +1,10 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use cms\catalog\common\models\Store;
-use cms\catalog\frontend\helpers\PriceHelper;
 use cms\purchase\common\helpers\DeliveryHelper;
-use cms\purchase\frontend\assets\DeliveryFormAsset;
-use cms\purchase\frontend\helpers\CartHelper;
-
-DeliveryFormAsset::register($this);
-
-$title = Yii::t('purchase', 'Order checkout');
-$this->title = $title;
 
 //delivery methods
 $methods = DeliveryHelper::getDeliveryMethods();
@@ -25,7 +16,7 @@ $methodsFields = array_map(function ($v) use ($form) {
         return Html::getInputId($form, $v);
     }, $v::availableFields());
 }, $methods);
-$method = ArrayHelper::getValue($methods, $form->method);
+$method = $form->getObject();
 
 //stores
 $stores = [];
@@ -43,27 +34,8 @@ foreach ($form->getAttributes() as $name => $value) {
     }
 }
 
-//cart
-$cart = CartHelper::getCart();
-
 ?>
-<h1><?= Html::encode($title) ?></h1>
-
-<?php $activeForm = ActiveForm::begin([
-    'id' => 'order-delivery-form',
-    'layout' => 'horizontal',
-    'enableClientValidation' => false,
-    'fieldConfig' => function ($model, $attribute) {
-        $config = ['enableLabel' => false, 'inputOptions' => ['class' => 'form-control'], 'horizontalCssClasses' => ['wrapper' => 'col-sm-12']];
-        $label = $model->getAttributeLabel($attribute);
-        if ($model->isAttributeRequired($attribute)) {
-            $label .= '*';
-        }
-        $config['inputOptions']['placeholder'] = $label;
-        return $config;
-    },
-]) ?>
-
+<div id="orderdelivery">
     <fieldset>
         <legend><?= Html::encode(Yii::t('purchase', 'Delivery method')) ?></legend>
         <?= $activeForm->field($form, 'method')->radioList($methodItems, ['data-fields' => $methodsFields, 'data-url-calc' => Url::toRoute(['delivery-calc'])]) ?>
@@ -109,25 +81,4 @@ $cart = CartHelper::getCart();
             <div class="col-sm-8"><?= $activeForm->field($form, 'comment', $options['comment'])->textarea(['rows' => 5]) ?></div>
         </div>
     </fieldset>
-
-    <div class="row">
-        <div class="order-total col-sm-8">
-            <div class="order-total-info-wrapper">
-                <div class="order-total-info">
-                    <strong><?= Html::encode(Yii::t('purchase', 'Your order')) ?>:</strong>
-                    <div><span><?= Html::encode(Yii::t('purchase', 'Contents')) ?>:</span> <?= Html::encode(Yii::t('purchase', '{n,plural,=1{# product} other{# products}}', ['n' => $cart->count])) ?>, <span class="order-subtotal-amount"><?= PriceHelper::render('span', $cart->subtotalAmount, $cart->currency) ?></span></div>
-                    <div><span><?= Html::encode(Yii::t('purchase', 'Delivery')) ?>:</span> <span class="order-total-delivery-name"><?= Html::encode($method->name) ?></span>, <span class="order-delivery-amount"><?= PriceHelper::render('span', $cart->deliveryAmount, $cart->currency) ?></span></div>
-                </div>
-                <div class="order-total-amount-block">
-                    <span><?= Html::encode(Yii::t('purchase', 'Total')) ?>:</span>
-                    <div class="order-total-amount"><?= PriceHelper::render('span', $cart->totalAmount, $cart->currency) ?></div>
-                </div>
-            </div>
-            <div class="order-total-buttons">
-                <?= Html::a(Yii::t('purchase', 'Back to cart'), ['cart/index'], ['class' => 'btn btn-default']) ?>
-                <?= Html::submitButton(Yii::t('purchase', 'Next'), ['class' => 'btn btn-primary']) ?>
-            </div>
-        </div>
-    </div>
-
-<?php ActiveForm::end() ?>
+</div>

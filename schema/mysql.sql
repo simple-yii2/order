@@ -12,7 +12,9 @@ create table if not exists `purchase_order`
     `subtotalAmount` decimal(10,2) not null,
     `deliveryAmount` decimal(10,2) not null,
     `totalAmount` decimal(10,2) not null,
-    `weight` decimal(10,3) not null,
+    `phone` varchar(20) not null,
+    `email` varchar(100) not null,
+    `name` varchar(100) not null,
     primary key (`id`)
 ) engine InnoDB;
 
@@ -54,5 +56,6 @@ create table if not exists `purchase_order_delivery`
     `comment` varchar(200) default null,
     `trackCode` varchar(20) default null,
     primary key (`id`),
+    unique key (`order_id`),
     foreign key (`order_id`) references `purchase_order` (`id`) on delete cascade on update cascade
 ) engine InnoDB;

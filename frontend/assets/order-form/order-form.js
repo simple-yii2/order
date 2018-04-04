@@ -1,6 +1,6 @@
-$('#deliveryform-method :radio').on('change', function(e) {
+$('#orderdeliveryform-method :radio').on('change', function(e) {
     var $radio = $(this),
-        fields = $radio.closest('#deliveryform-method').data('fields')[$radio.val()],
+        fields = $radio.closest('#orderdeliveryform-method').data('fields')[$radio.val()],
         $form = $radio.closest('form');
 
     var filter = []
@@ -8,7 +8,7 @@ $('#deliveryform-method :radio').on('change', function(e) {
         filter.push('.field-' + v);
     });
 
-    $form.find('.form-group').not(':first, :last').addClass('hidden').filter(filter.join(',')).removeClass('hidden');
+    $form.find('#orderdelivery .form-group').not(':first, :last').addClass('hidden').filter(filter.join(',')).removeClass('hidden');
 
     $('.order-total-delivery-name').text($.trim($radio.parent().text()));
 
@@ -20,7 +20,7 @@ $('#order-delivery-form select, #order-delivery-form input, #order-delivery-form
 });
 
 function calcDelivery($form) {
-    $.post($form.find('#deliveryform-method').data('urlCalc'), $form.serialize(), function(data) {
+    $.post($form.find('#orderdeliveryform-method').data('urlCalc'), $form.serialize(), function(data) {
         $form.find('.order-delivery-amount').html(data);
     }, 'json');
 };

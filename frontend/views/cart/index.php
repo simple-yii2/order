@@ -28,7 +28,7 @@ if ($cart !== null) {
     $amount = Html::tag('div', PriceHelper::render('span', $cart->subtotalAmount, $currency), ['class' => 'cart-list-total-amount']);
     $block = Html::tag('div', $label . $amount, ['class' => 'cart-list-total-amount-block']);
 
-    $order = Html::a(Yii::t('purchase', 'Proceed to checkout'), ['order/delivery'], ['class' => 'btn btn-primary']);
+    $order = Html::a(Yii::t('purchase', 'Proceed to checkout'), ['order/checkout'], ['class' => 'btn btn-primary']);
     $buttons = Html::tag('div', $order, ['class' => 'cart-list-total-buttons']);
     $total = Html::tag('div', $block . $buttons, ['class' => 'cart-list-total']);
 }

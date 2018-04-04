@@ -4,15 +4,15 @@ namespace cms\purchase\frontend\assets;
 
 use yii\web\AssetBundle;
 
-class DeliveryFormAsset extends AssetBundle
+class OrderFormAsset extends AssetBundle
 {
 
     public $css = [
-        'delivery-form.css',
+        'order-form.css',
     ];
 
     public $js = [
-        'delivery-form.js',
+        'order-form.js',
     ];
 
     public $depends = [
@@ -21,7 +21,7 @@ class DeliveryFormAsset extends AssetBundle
 
     public function init()
     {
-        $this->sourcePath = __DIR__ . '/delivery-form';
+        $this->sourcePath = __DIR__ . '/order-form';
         parent::init();
     }
 
