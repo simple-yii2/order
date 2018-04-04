@@ -38,7 +38,7 @@ foreach ($form->getAttributes() as $name => $value) {
 <div id="orderdelivery">
     <fieldset>
         <legend><?= Html::encode(Yii::t('purchase', 'Delivery method')) ?></legend>
-        <?= $activeForm->field($form, 'method')->radioList($methodItems, ['data-fields' => $methodsFields, 'data-url-calc' => Url::toRoute(['delivery-calc'])]) ?>
+        <?= $activeForm->field($form, 'method')->radioList($methodItems, ['data-fields' => $methodsFields, 'data-url-calc' => Url::toRoute(['calc-delivery'])]) ?>
     </fieldset>
 
     <fieldset>

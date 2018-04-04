@@ -139,4 +139,13 @@ class OrderForm extends Model
         return true;
     }
 
+    /**
+     * Calculate delivery amount
+     * @return float
+     */
+    public function calcDelivery()
+    {
+        return $this->delivery->calc($this->_object);
+    }
+
 }
